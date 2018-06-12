@@ -3,7 +3,7 @@ package it.polimi.rsp.wasp.csparql;
 import eu.larkc.csparql.common.RDFTable;
 import eu.larkc.csparql.common.RDFTuple;
 import eu.larkc.csparql.core.engine.CsparqlQueryResultProxy;
-import it.polimi.sr.wasp.rsp.model.Stream;
+import it.polimi.sr.wasp.rsp.model.DataStream;
 import lombok.extern.java.Log;
 import org.eclipse.rdf4j.model.Model;
 import org.eclipse.rdf4j.model.Resource;
@@ -20,12 +20,12 @@ import org.eclipse.rdf4j.rio.jsonld.JSONLDWriterFactory;
 import java.io.StringWriter;
 
 @Log
-public class CsparqlQueryResultStream extends Stream {
+public class CsparqlQueryResultStream extends DataStream {
     ValueFactory vf = SimpleValueFactory.getInstance();
 
 
-    public CsparqlQueryResultStream(String id, String qid, CsparqlQueryResultProxy resultProxy) {
-        super(id, qid);
+    public CsparqlQueryResultStream(String base, String id, String qid, CsparqlQueryResultProxy resultProxy) {
+        super(base, id, qid);
         resultProxy.addObserver((o, arg) -> yeild(RDFTableToList((RDFTable) arg)));
     }
 

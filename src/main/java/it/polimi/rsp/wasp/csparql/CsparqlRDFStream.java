@@ -20,13 +20,13 @@
  ******************************************************************************/
 package it.polimi.rsp.wasp.csparql;
 
-import it.polimi.sr.wasp.rsp.model.Stream;
+import it.polimi.sr.wasp.rsp.model.DataStream;
 import it.polimi.sr.wasp.server.model.concept.Sink;
 
 
-public class CsparqlRDFStream extends Stream {
-    public CsparqlRDFStream(String id, String uri, Sink stream) {
-        super(id, uri);
+public class CsparqlRDFStream extends DataStream {
+    public CsparqlRDFStream(String base, String id, String uri, Sink stream) {
+        super(base, id, uri);
         this.sinks.add(stream);
     }
 }

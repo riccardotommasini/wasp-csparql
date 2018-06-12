@@ -9,8 +9,8 @@ public class CSPARQLQuery extends Query {
 
     private final CsparqlQueryResultProxy internal_query;
 
-    public CSPARQLQuery(String iri, String body, CsparqlQueryResultProxy internal_query, CsparqlQueryResultStream out) {
-        super(iri, body);
+    public CSPARQLQuery(String base, String iri, String body, CsparqlQueryResultProxy internal_query, CsparqlQueryResultStream out) {
+        super(iri, body, base);
         this.out = out;
         this.internal_query = internal_query;
     }

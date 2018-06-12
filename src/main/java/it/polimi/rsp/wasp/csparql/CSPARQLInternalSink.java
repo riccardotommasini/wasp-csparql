@@ -2,10 +2,9 @@ package it.polimi.rsp.wasp.csparql;
 
 import eu.larkc.csparql.cep.api.RdfQuadruple;
 import eu.larkc.csparql.cep.api.RdfStream;
-import it.polimi.sr.wasp.server.model.concept.Channel;
-import it.polimi.sr.wasp.server.model.concept.Sink;
-import it.polimi.sr.wasp.server.model.concept.Source;
+import it.polimi.sr.wasp.server.model.concept.*;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.eclipse.rdf4j.model.Model;
 import org.eclipse.rdf4j.model.impl.LinkedHashModel;
 import org.eclipse.rdf4j.rio.RDFParser;
@@ -16,10 +15,11 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.util.stream.Stream;
 
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class CSPARQLInternalSink implements Sink {
 
     private final RdfStream stream;
+    private final Descriptor descr = new DescriptorHashMap();
 
     @Override
     public void await(Source source, String s) {
@@ -29,6 +29,11 @@ public class CSPARQLInternalSink implements Sink {
     @Override
     public void await(Channel channel, String s) {
         deserializizeAsJsonSerialization(s).forEach(stream::put);
+    }
+
+    @Override
+    public Descriptor describe() {
+        return descr;
     }
 
 
